@@ -7,7 +7,7 @@ angular.module('myApp.controllers', [])
 
   }])
   .controller('WaitlistController', ['$scope', '$firebase', function($scope, $firebase) {
-    var partiesRef = new Firebase('https://waitandeat-jonos.firebaseio.com/')
+    var partiesRef = new Firebase('https://waitandeat-jonos.firebaseio.com/parties')
     
     $scope.parties = $firebase(partiesRef);
 
