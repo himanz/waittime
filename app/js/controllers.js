@@ -10,4 +10,8 @@ angular.module('myApp.controllers', [])
     $scope.parties = [];
 
     $scope.party = {name: '', phone: '', size: ''};
+
+    $scope.saveParty = function() {
+    	$scope.parties.push($scope.party);
+    };
   }])
