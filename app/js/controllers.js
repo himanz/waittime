@@ -3,6 +3,9 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('LandingPageController', [function(){
+  .controller('LandingPageController', [function() {
+
+  }])
+  .controller('WaitlistController', [function() {
 
   }])
