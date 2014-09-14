@@ -35,6 +35,15 @@ angular.module('myApp.controllers', [])
       $scope.parties.$save(party.$id);
     };
   }])
-  .controller('AuthController', ['$scope', function($scope) {
-  
+  .controller('AuthController', ['$scope', '$firebaseSimpleLogin', function($scope, $firebaseSimpleLogin) {
+    var authRef = new Firebase('https://waitandeat-jonos.firebaseio.com/');
+    var auth = $firebaseSimpleLogin(authRef);
+
+    $scope.user = {email: '', password: ''};
+
+    $scope.register = function() {
+      auth.$createUser($scope.user.email, $scope.user.password).then(function(data) {
+      	console.log(data);
+      });
+    }; 
   }]);
