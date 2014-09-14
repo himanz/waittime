@@ -35,3 +35,6 @@ angular.module('myApp.controllers', [])
       $scope.parties.$save(party.$id);
     };
   }])
+  .controller('AuthController', ['$scope', function($scope) {
+  
+  }]);
