@@ -2,9 +2,6 @@
 
 /* Services */
 
-
-// Demonstrate how to register services
-// In this case it is a simple value service.
 angular.module('myApp.services', [])
   .value('FIREBASE_URL', 'https://waitandeat-jonos.firebaseio.com/')
   .factory('dataService', function($firebase, FIREBASE_URL) {
@@ -15,11 +12,13 @@ angular.module('myApp.services', [])
   })
   .factory('partyService', function(dataService) {
     var parties = dataService.$child('parties') 
+    var users = dataService.$child('users'); 
 
     var partyServiceObject = {
       parties: parties,
-      saveParty: function(party) {
-      	parties.$add(party);  	
+      saveParty: function(party, userId) {
+      	// parties.$add(party);
+      	users.$child(userId).$child('parties').$add(party);
       }
     };
 
