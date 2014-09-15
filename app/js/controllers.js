@@ -35,7 +35,7 @@ angular.module('myApp.controllers', [])
       $scope.parties.$save(party.$id);
     };
   }])
-  .controller('AuthController', ['$scope', '$firebaseSimpleLogin', '$location', 'FIREBASE_URL', function($scope, $firebaseSimpleLogin, $location, FIREBASE_URL) {
+  .controller('AuthController', ['$scope', '$firebaseSimpleLogin', '$location', 'FIREBASE_URL', 'authService', function($scope, $firebaseSimpleLogin, $location, FIREBASE_URL, authService) {
     var authRef = new Firebase(FIREBASE_URL);
     var auth = $firebaseSimpleLogin(authRef);
 
@@ -49,11 +49,7 @@ angular.module('myApp.controllers', [])
     };
 
     $scope.login = function() {
-      auth.$login('password', $scope.user).then(function(data) {
-        console.log(data);
-        // Redirect users to /waitlist.
-        $location.path('/waitlist');
-      });
+      authService.login($scope.user);
     };
 
     $scope.logout = function() {
