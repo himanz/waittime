@@ -52,13 +52,17 @@ angular.module('myApp.services', [])
     	register: function(user) {
         auth.$createUser(user.email, user.password).then(function(data) {
       	  console.log(data);
-      	  emails.$add({email: user.email});
-      	  authServiceObject.login(user);
+      	  authServiceObject.login(user, function(){
+      	    emails.$add({email: user.email});	
+      	  });
         });
     	},
-    	login: function(user) {
+    	login: function(user, optionalCallback) {
     		auth.$login('password', user).then(function(data) {
           console.log(data);
+          if (optionalCallback) {
+            optionalCallback();
+          }
           // Redirect users to /waitlist.
           $location.path('/waitlist');
         });
